@@ -4,32 +4,36 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Club Create</title>
+    <title>Club Edit</title>
 </head>
 <body class="d-flex flex-column h-100">
 <main class="flex-shrink-0">
     <!-- Page Content-->
     <section class="py-5" layout:fragment="body">
         <div class="container">
-            <form method="post" role="form" th:action="@{/clubs/new}" th:object="${club}">
+            <form method="post" role="form" th:action="@{/clubs/{clubId}/edit(clubId=${club.id})}" th:object="${club}">
+                <input th:field="*{id}" type="hidden">
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="title">Title</label>
                         <input class="form-control" id="title" name="title" placeholder="Title" th:field="*{title}"
                                type="text">
+                        <p class="text-danger" th:errors="*{title}" th:if="${#fields.hasErrors('title')}"></p>
                     </div>
                     <div class="form-group col-md-6">
                         <label for="photoUrl">Photo Url</label>
                         <input class="form-control" id="photoUrl" name="photoUrl" placeholder="Photo Url" th:field="*{photoUrl}"
                                type="url">
+                        <p class="text-danger" th:errors="*{photoUrl}" th:if="${#fields.hasErrors('photoUrl')}"></p>
                     </div>
                 </div>
                 <div class="form-group mb-3">
                     <label for="content">Content</label>
                     <input class="form-control" id="content" name="content" placeholder="1234 Main St" th:field="*{content}"
                            type="text">
+                    <p class="text-danger" th:errors="*{content}" th:if="${#fields.hasErrors('content')}"></p>
                 </div>
-                <button class="btn btn-primary" type="submit">Create</button>
+                <button class="btn btn-primary" type="submit">Edit</button>
             </form>
         </div>
     </section>
