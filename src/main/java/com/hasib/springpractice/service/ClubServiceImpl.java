@@ -1,12 +1,16 @@
 package com.hasib.springpractice.service;
 
 import com.hasib.springpractice.dto.ClubDto;
+import com.hasib.springpractice.mapper.ClubMapper;
 import com.hasib.springpractice.models.Club;
 import com.hasib.springpractice.repository.ClubRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static com.hasib.springpractice.mapper.ClubMapper.mapToClub;
+import static com.hasib.springpractice.mapper.ClubMapper.mapToClubDto;
 
 @Service
 public class ClubServiceImpl implements ClubService {
@@ -19,7 +23,7 @@ public class ClubServiceImpl implements ClubService {
 
     @Override
     public List<ClubDto> findAllClubs() {
-        return clubRepository.findAll().stream().map(this::mapToClubDto).collect(Collectors.toList());
+        return clubRepository.findAll().stream().map(ClubMapper::mapToClubDto).collect(Collectors.toList());
     }
 
     @Override
@@ -45,28 +49,6 @@ public class ClubServiceImpl implements ClubService {
 
     @Override
     public List<ClubDto> searchQuery(String query) {
-        return clubRepository.searchClubs(query).stream().map(this::mapToClubDto).collect(Collectors.toList());
-    }
-
-    private Club mapToClub(ClubDto clubDto) {
-        return Club.builder()
-                .id(clubDto.getId())
-                .title(clubDto.getTitle())
-                .photoUrl(clubDto.getPhotoUrl())
-                .content(clubDto.getContent())
-                .createdOn(clubDto.getCreatedOn())
-                .updatedOn(clubDto.getUpdatedOn())
-                .build();
-    }
-
-    private ClubDto mapToClubDto(Club club) {
-        return ClubDto.builder()
-                .id(club.getId())
-                .title(club.getTitle())
-                .photoUrl(club.getPhotoUrl())
-                .content(club.getContent())
-                .createdOn(club.getCreatedOn())
-                .updatedOn(club.getUpdatedOn())
-                .build();
+        return clubRepository.searchClubs(query).stream().map(ClubMapper::mapToClubDto).collect(Collectors.toList());
     }
 }
