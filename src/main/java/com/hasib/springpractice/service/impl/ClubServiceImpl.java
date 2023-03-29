@@ -1,9 +1,10 @@
-package com.hasib.springpractice.service;
+package com.hasib.springpractice.service.impl;
 
 import com.hasib.springpractice.dto.ClubDto;
 import com.hasib.springpractice.mapper.ClubMapper;
 import com.hasib.springpractice.models.Club;
 import com.hasib.springpractice.repository.ClubRepository;
+import com.hasib.springpractice.service.ClubService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

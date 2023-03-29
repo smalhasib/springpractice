@@ -1,4 +1,4 @@
-package com.hasib.springpractice.service;
+package com.hasib.springpractice.service.impl;
 
 import com.hasib.springpractice.dto.EventDto;
 import com.hasib.springpractice.mapper.EventMapper;
@@ -6,6 +6,7 @@ import com.hasib.springpractice.models.Club;
 import com.hasib.springpractice.models.Event;
 import com.hasib.springpractice.repository.ClubRepository;
 import com.hasib.springpractice.repository.EventRepository;
+import com.hasib.springpractice.service.EventService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
